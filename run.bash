@@ -26,7 +26,7 @@ dnf update -y
 dnf install -y code
 
 # install system tools
-dnf install -y htop ranger
+dnf install -y htop ranger neovim
 
 # install multimedia applicantions
 dnf install -y remmina* texlive-scheme-full picard easytag asunder musicbrainz vlc
