@@ -1,3 +1,4 @@
+#/etc/systemd/system/disable-turbo-boost.service
 [Unit]
 Description=Disable Turbo Boost on Intel CPU
  
