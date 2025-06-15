@@ -33,3 +33,6 @@ dnf install -y htop ranger neovim helix
 
 # install multimedia applicantions
 dnf install -y remmina* texlive-scheme-full picard easytag asunder musicbrainz vlc
+
+# add Server to fstab
+echo "server:/tank   /tank   nfs   noauto,x-systemd.automount,x-systemd.mount-timeout=30,_netdev   0  0" >> /etc/fstab
