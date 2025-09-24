@@ -6,4 +6,4 @@ After=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/backup-home.sh
+ExecStart=/usr/local/bin/backup-home.bash
