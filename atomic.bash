@@ -30,7 +30,7 @@ rpm-ostree install --allow-inactive $(dnf repoquery --repo=rpmfusion-nonfree-tai
 # ------------------------
 # Nützliche Programme
 # ------------------------
-rpm-ostree install htop ranger || true
+rpm-ostree install htop ranger borgbackup || true
 
 # ------------------------
 # Flatpak Programme
