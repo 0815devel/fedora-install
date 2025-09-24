@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+#/usr/local/bin/repo-init.bash
+
 # ------------------------
 # Variablen
 # ------------------------
