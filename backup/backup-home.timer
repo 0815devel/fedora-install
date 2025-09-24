@@ -3,7 +3,7 @@
 Description=Run home backup daily
 
 [Timer]
-OnCalendar=weekly
+OnCalendar=daily
 Persistent=true
 
 [Install]
