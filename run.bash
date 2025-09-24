@@ -36,4 +36,4 @@ dnf install -y remmina* picard easytag asunder musicbrainz vlc
 # texlive-scheme-full
 
 # add Server to fstab
-echo "server:/tank   /tank   nfs   noauto,x-systemd.automount,x-systemd.mount-timeout=30,_netdev   0  0" >> /etc/fstab
+#echo "server:/tank   /tank   nfs   noauto,x-systemd.automount,x-systemd.mount-timeout=30,_netdev   0  0" >> /etc/fstab
