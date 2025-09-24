@@ -1,0 +1,7 @@
+/etc/systemd/system/backup-home.service
+[Unit]
+Description=Backup home directory with Borg
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/backup-home.sh
