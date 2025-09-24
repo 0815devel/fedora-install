@@ -1,39 +1,43 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-# install RPMFusion
-dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
-https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+# ------------------------
+# Install RPMFusion Repos
+# ------------------------
+for repo in free nonfree; do
+    if ! dnf repolist all | grep -q "rpmfusion-$repo"; then
+        dnf install -y "https://mirrors.rpmfusion.org/$repo/fedora/rpmfusion-${repo}-release-$(rpm -E %fedora).noarch.rpm"
+    fi
+done
 
-## install Terra
-#dnf install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
-
-# update  repository
+# ------------------------
+# Update System
+# ------------------------
 dnf update -y
 
-# multimedia
-dnf swap -y ffmpeg-free ffmpeg --allowerasing
-dnf update -y @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
+# ------------------------
+# Multimedia-Hardware-Beschleunigung
+# ------------------------
+dnf swap -y ffmpeg-free ffmpeg --allowerasing || true
 dnf install -y intel-media-driver
-dnf swap -y mesa-va-drivers mesa-va-drivers-freeworld
-dnf swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
-dnf install -y rpmfusion-free-release-tainted
+dnf update -y @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin || true
+dnf swap -y mesa-va-drivers mesa-va-drivers-freeworld || true
+dnf swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld || true
+
+# ------------------------
+# Tainted Repos für DVD / Firmware
+# ------------------------
+dnf install -y rpmfusion-free-release-tainted rpmfusion-nonfree-release-tainted
 dnf install -y libdvdcss
-dnf install -y rpmfusion-nonfree-release-tainted
 dnf install -y --repo=rpmfusion-nonfree-tainted "*-firmware"
 
-## install VSCode
-#rpm --import https://packages.microsoft.com/keys/microsoft.asc
-#echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" \
-#| tee /etc/yum.repos.d/vscode.repo > /dev/null
-#dnf update -y
-#dnf install -y code
+# ------------------------
+# Nützliche Programme
+# ------------------------
+dnf install -y htop ranger helix remmina* picard easytag asunder musicbrainz vlc
 
-# install system tools
-dnf install -y htop ranger helix
-
-# install multimedia applicantions
-dnf install -y remmina* picard easytag asunder musicbrainz vlc
-# texlive-scheme-full
-
-# add Server to fstab
-#echo "server:/tank   /tank   nfs   noauto,x-systemd.automount,x-systemd.mount-timeout=30,_netdev   0  0" >> /etc/fstab
+# ------------------------
+# Flatpak Programme
+# ------------------------
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak install -y flathub md.obsidian.Obsidian com.zettlr.Zettlr com.usebottles.bottles org.freedesktop.Sdk.Extension.texlive
