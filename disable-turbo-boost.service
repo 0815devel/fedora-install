@@ -1,13 +1,15 @@
 #/etc/systemd/system/disable-turbo-boost.service
 [Unit]
-Description=Disable Turbo Boost on Intel CPU
- 
+Description=Disable Intel Turbo Boost
+After=systemd-modules-load.service
+Wants=systemd-modules-load.service
+ConditionPathExists=/sys/devices/system/cpu/intel_pstate/no_turbo
+
 [Service]
-ExecStart=/bin/sh -c "/usr/bin/echo 1 > \
-/sys/devices/system/cpu/intel_pstate/no_turbo"
-ExecStop=/bin/sh -c "/usr/bin/echo 0 > \
-/sys/devices/system/cpu/intel_pstate/no_turbo"
+Type=oneshot
+ExecStart=/bin/sh -c 'echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo'
+ExecStop=/bin/sh -c 'echo 0 > /sys/devices/system/cpu/intel_pstate/no_turbo'
 RemainAfterExit=yes
- 
+
 [Install]
-WantedBy=sysinit.target
+WantedBy=multi-user.target
