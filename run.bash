@@ -34,7 +34,7 @@ dnf install -y --repo=rpmfusion-nonfree-tainted "*-firmware"
 # ------------------------
 # Nützliche Programme
 # ------------------------
-dnf install -y htop ranger helix remmina* picard easytag asunder musicbrainz vlc
+dnf install -y htop ranger helix remmina* picard easytag asunder vlc
 
 # ------------------------
 # Flatpak Programme
