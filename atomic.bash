@@ -54,3 +54,8 @@ flatpaks=(
 for pkg in "${flatpaks[@]}"; do
     flatpak install -y --noninteractive flathub "$pkg" || true
 done
+
+# ------------------------
+# System upgrade & reboot
+# ------------------------
+rpm-ostree upgrade
