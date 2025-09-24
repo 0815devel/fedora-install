@@ -1,6 +1,8 @@
 /etc/systemd/system/backup-home.service
 [Unit]
-Description=Backup home directory with Borg
+Description=Backup Home Directory with Borg
+Wants=network-online.target
+After=network-online.target
 
 [Service]
 Type=oneshot
