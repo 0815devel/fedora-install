@@ -1,0 +1,15 @@
+[Unit]
+Description=Mount NFS Tank
+After=network-online.target
+Wants=network-online.target
+
+[Mount]
+What=server:/tank
+Where=/tank
+Type=nfs
+Options=_netdev,defaults,x-systemd.automount,x-systemd.idle-timeout=1min
+TimeoutSec=30
+ForceUnmount=yes
+
+[Install]
+WantedBy=multi-user.target
