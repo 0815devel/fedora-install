@@ -19,7 +19,7 @@ dnf update -y
 # Multimedia-Hardware-Beschleunigung
 # ------------------------
 dnf swap -y ffmpeg-free ffmpeg --allowerasing || true
-dnf install -y intel-media-driver
+dnf install -y intel-media-driver libva-intel-driver
 dnf update -y @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin || true
 dnf swap -y mesa-va-drivers mesa-va-drivers-freeworld || true
 dnf swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld || true
