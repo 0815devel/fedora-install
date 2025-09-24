@@ -1,0 +1,10 @@
+/etc/systemd/system/backup-home.timer
+[Unit]
+Description=Run home backup daily
+
+[Timer]
+OnCalendar=weekly
+Persistent=true
+
+[Install]
+WantedBy=timers.target
