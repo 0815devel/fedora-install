@@ -34,10 +34,10 @@ dnf install -y --repo=rpmfusion-nonfree-tainted "*-firmware"
 # ------------------------
 # Nützliche Programme
 # ------------------------
-dnf install -y htop ranger helix remmina* picard easytag asunder musicbrainz vlc
+rpm-ostree install htop ranger
 
 # ------------------------
 # Flatpak Programme
 # ------------------------
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-flatpak install -y flathub md.obsidian.Obsidian com.zettlr.Zettlr com.usebottles.bottles org.freedesktop.Sdk.Extension.texlive
+flatpak install -y flathub md.obsidian.Obsidian com.zettlr.Zettlr com.usebottles.bottles org.freedesktop.Sdk.Extension.texlive dev.zed.Zed com.helix_editor.Helix org.musicbrainz.Picard org.gnome.EasyTAG ca.littlesvr.asunder org.videolan.VLC org.remmina.Remmina
