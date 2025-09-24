@@ -1,4 +1,3 @@
-/etc/systemd/system/backup-home.service
 [Unit]
 Description=Backup Home Directory with Borg
 Wants=network-online.target
@@ -6,4 +5,11 @@ After=network-online.target
 
 [Service]
 Type=oneshot
+User=
 ExecStart=/usr/local/bin/backup-home.bash
+StandardOutput=journal
+StandardError=journal
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
