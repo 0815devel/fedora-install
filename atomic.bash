@@ -22,9 +22,9 @@ rpm-ostree install mesa-vdpau-drivers-freeworld
 # ------------------------
 # Tainted Repos für DVD / Firmware
 # ------------------------
-dnf install -y rpmfusion-free-release-tainted rpmfusion-nonfree-release-tainted
-dnf install -y libdvdcss
-dnf install -y --repo=rpmfusion-nonfree-tainted "*-firmware"
+rpm-ostree install rpmfusion-free-release-tainted rpmfusion-nonfree-release-tainted
+rpm-ostree install libdvdcss
+rpm-ostree install --allow-inactive $(dnf repoquery --repo=rpmfusion-nonfree-tainted '*-firmware')
 
 # ------------------------
 # Nützliche Programme
