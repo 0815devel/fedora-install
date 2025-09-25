@@ -27,13 +27,6 @@ setup_multimedia() {
     rpm-ostree install mesa-vdpau-drivers-freeworld || true
 }
 
-install_tainted() {
-    echo "Installiere Tainted Repos und Firmware..."
-    rpm-ostree install rpmfusion-free-release-tainted rpmfusion-nonfree-release-tainted || true
-    rpm-ostree install libdvdcss || true
-    rpm-ostree install --allow-inactive $(dnf repoquery --repo=rpmfusion-nonfree-tainted '*-firmware') || true
-}
-
 install_tools() {
     echo "Installiere nützliche Programme..."
     rpm-ostree install htop ranger borgbackup || true
@@ -76,7 +69,6 @@ system_upgrade() {
 # ------------------------
 install_rpmfusion
 setup_multimedia
-install_tainted
 install_tools
 install_flatpaks
 system_upgrade
