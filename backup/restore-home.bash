@@ -8,7 +8,7 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
-REPO="/tank/backups/home-borg-repo"
+REPO="/tank/backup/home-borg-repo"
 SNAPSHOT="$1"
 
 borg extract "$REPO::$SNAPSHOT"
