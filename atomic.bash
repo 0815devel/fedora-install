@@ -16,7 +16,7 @@ install_rpmfusion() {
 setup_multimedia() {
     echo "Konfiguriere Multimedia und Hardware-Beschleunigung..."
     rpm-ostree override remove fdk-aac-free libavcodec-free libavdevice-free libavfilter-free \
-        libavformat-free libavutil-free libpostproc-free libswresample-free libswscale-free ffmpeg \
+        libavformat-free libavutil-free libpostproc-free libswresample-free libswscale-free ffmpeg-free \
         --install ffmpeg || true
 
     rpm-ostree install intel-media-driver libva-intel-driver || true
