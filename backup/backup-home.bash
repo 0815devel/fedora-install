@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-set -euo pipefail
-
 #/usr/local/bin/backup-home.bash
+
+set -euo pipefail
 
 # ------------------------
 # Konfiguration
