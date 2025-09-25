@@ -6,7 +6,7 @@ set -euo pipefail
 # ------------------------
 # Variablen
 # ------------------------
-REPO="/tank/backups/home-borg-repo"
+REPO="/tank/backup/home-borg-repo"
 
 # ------------------------
 # Repository initialisieren
