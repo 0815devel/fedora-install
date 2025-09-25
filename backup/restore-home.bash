@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-set -euo pipefail
-
 #/usr/local/bin/restore-home.bash
+
+set -euo pipefail
 
 if [ $# -ne 1 ]; then
     echo "Usage: $0 <snapshot-name>"
