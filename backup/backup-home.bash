@@ -6,7 +6,7 @@ set -euo pipefail
 # ------------------------
 # Konfiguration
 # ------------------------
-REPO="/tank/backups/home-borg-repo"
+REPO="/tank/backup/home-borg-repo"
 HOST=$(hostname)
 NOW=$(date +%Y-%m-%d-%H%M)
 
