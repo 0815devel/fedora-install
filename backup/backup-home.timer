@@ -1,4 +1,4 @@
-/etc/systemd/system/backup-home.timer
+#/etc/systemd/system/backup-home.timer
 [Unit]
 Description=Run Home Backup Daily
 
