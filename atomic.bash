@@ -5,12 +5,28 @@ set -euo pipefail
 # Funktionen
 # ------------------------
 install_rpmfusion() {
+    local changed=0
+
     for repo in free nonfree; do
-        if ! dnf repolist all | grep -q "rpmfusion-$repo"; then
+        if ! rpm-ostree status | grep -q "rpmfusion-$repo"; then
             echo "Installiere RPMFusion-$repo..."
-            rpm-ostree install -y "https://mirrors.rpmfusion.org/$repo/fedora/rpmfusion-${repo}-release-$(rpm -E %fedora).noarch.rpm" || true
+            if rpm-ostree install -y \
+                "https://mirrors.rpmfusion.org/$repo/fedora/rpmfusion-${repo}-release-$(rpm -E %fedora).noarch.rpm"; then
+                changed=1
+            else
+                echo "Warnung: Installation von rpmfusion-$repo fehlgeschlagen"
+            fi
+        else
+            echo "rpmfusion-$repo ist bereits installiert, überspringe..."
         fi
     done
+
+    if [ $changed -eq 1 ]; then
+        echo "Ein oder mehrere Repos wurden installiert, Reboot notwendig..."
+        systemctl reboot
+    else
+        echo "Keine Änderungen, kein Reboot nötig."
+    fi
 }
 
 setup_multimedia() {
