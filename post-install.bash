@@ -2,27 +2,27 @@
 set -euo pipefail
 
 # ------------------------
-# Funktionen
+# Functions
 # ------------------------
 install_rpmfusion() {
-    echo "Installiere RPMFusion Repos..."
+    echo "Install RPMFusion Repos..."
     for repo in free nonfree; do
         if ! dnf repolist all | grep -q "rpmfusion-$repo"; then
-            echo "RPMFusion-$repo wird installiert..."
+            echo "RPMFusion-$repo is installing..."
             dnf install -y "https://mirrors.rpmfusion.org/$repo/fedora/rpmfusion-${repo}-release-$(rpm -E %fedora).noarch.rpm"
         else
-            echo "RPMFusion-$repo ist bereits installiert."
+            echo "RPMFusion-$repo is already installed."
         fi
     done
 }
 
 system_update() {
-    echo "System wird aktualisiert..."
+    echo "System is updating..."
     dnf update -y
 }
 
 setup_multimedia() {
-    echo "Multimedia- und Hardware-Beschleunigung wird konfiguriert..."
+    echo "Multimedia- and Hardware-Acceleration installing..."
     dnf swap -y ffmpeg-free ffmpeg --allowerasing || true
     dnf install -y intel-media-driver libva-intel-driver || true
     dnf update -y @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin || true
@@ -31,19 +31,19 @@ setup_multimedia() {
 }
 
 install_tainted() {
-    echo "Tainted Repos, DVD und Firmware werden installiert..."
+    echo "Tainted Repos, DVD and Firmware installing..."
     dnf install -y rpmfusion-free-release-tainted rpmfusion-nonfree-release-tainted || true
     dnf install -y libdvdcss || true
     dnf install -y --repo=rpmfusion-nonfree-tainted "*-firmware" || true
 }
 
 install_tools() {
-    echo "Installiere nützliche Programme..."
+    echo "Installing Packages..."
     dnf install -y htop ranger helix remmina* picard easytag asunder vlc borgbackup || true
 }
 
 install_flatpaks() {
-    echo "Installiere Flatpaks..."
+    echo "Installing Flatpaks..."
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
     flatpaks=(
@@ -58,7 +58,7 @@ install_flatpaks() {
         if ! flatpak list | grep -q "$pkg"; then
             flatpak install -y --noninteractive flathub "$pkg"
         else
-            echo "$pkg ist bereits installiert."
+            echo "$pkg is already installed."
         fi
     done
 }
@@ -73,4 +73,4 @@ install_tainted
 install_tools
 install_flatpaks
 
-echo "Workstation-Setup abgeschlossen!"
+echo "Workstation-Setup done!"
