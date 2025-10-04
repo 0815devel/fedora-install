@@ -2,35 +2,35 @@
 set -euo pipefail
 
 # ------------------------
-# Funktionen
+# Function
 # ------------------------
 install_rpmfusion() {
     local changed=0
 
     for repo in free nonfree; do
         if ! rpm-ostree status | grep -q "rpmfusion-$repo"; then
-            echo "Installiere RPMFusion-$repo..."
+            echo "Installing RPMFusion-$repo..."
             if rpm-ostree install -y \
                 "https://mirrors.rpmfusion.org/$repo/fedora/rpmfusion-${repo}-release-$(rpm -E %fedora).noarch.rpm"; then
                 changed=1
             else
-                echo "Warnung: Installation von rpmfusion-$repo fehlgeschlagen"
+                echo "Warning: Installation of rpmfusion-$repo failed"
             fi
         else
-            echo "rpmfusion-$repo ist bereits installiert, überspringe..."
+            echo "rpmfusion-$repo is already installes, skip..."
         fi
     done
 
     if [ $changed -eq 1 ]; then
-        echo "Ein oder mehrere Repos wurden installiert, Reboot notwendig..."
+        echo "Repos had been installed, Reboot..."
         systemctl reboot
     else
-        echo "Keine Änderungen, kein Reboot nötig."
+        echo "No new Repos no Reboot"
     fi
 }
 
 setup_multimedia() {
-    echo "Konfiguriere Multimedia und Hardware-Beschleunigung..."
+    echo "Multimedia and Hardware-Acceleratiom..."
     rpm-ostree override remove fdk-aac-free libavcodec-free libavdevice-free libavfilter-free \
         libavformat-free libavutil-free libpostproc-free libswresample-free libswscale-free ffmpeg-free \
         --install ffmpeg || true
@@ -44,12 +44,12 @@ setup_multimedia() {
 }
 
 install_tools() {
-    echo "Installiere nützliche Programme..."
+    echo "Install Packagea..."
     rpm-ostree install htop ranger borgbackup || true
 }
 
 install_flatpaks() {
-    echo "Installiere Flatpaks..."
+    echo "Install Flatpaks..."
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
     flatpaks=(
@@ -70,13 +70,13 @@ install_flatpaks() {
         if ! flatpak list | grep -q "$pkg"; then
             flatpak install -y --noninteractive flathub "$pkg"
         else
-            echo "$pkg ist bereits installiert."
+            echo "$pkg is already installed."
         fi
     done
 }
 
 system_upgrade() {
-    echo "Führe Systemupgrade durch..."
+    echo "Updating..."
     rpm-ostree upgrade
 }
 
@@ -89,4 +89,4 @@ install_tools
 install_flatpaks
 system_upgrade
 
-echo "Setup abgeschlossen!"
+echo "Setup done!"
