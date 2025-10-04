@@ -4,17 +4,17 @@
 set -euo pipefail
 
 # ------------------------
-# Variablen
+# Variables
 # ------------------------
 REPO="/tank/backup/home-borg-repo"
 
 # ------------------------
-# Repository initialisieren
+# Init Repository
 # ------------------------
 if [ ! -d "$REPO" ]; then
-    echo "Initialisiere Borg-Repository unter $REPO..."
+    echo "Init of Borg-Repository $REPO..."
     borg init --encryption=none "$REPO"
-    echo "Repository erfolgreich initialisiert."
+    echo "Init of Repository done."
 else
-    echo "Repository existiert bereits: $REPO"
+    echo "Repository already existing: $REPO"
 fi
