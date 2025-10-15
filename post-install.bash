@@ -51,7 +51,6 @@ install_flatpaks() {
       com.zettlr.Zettlr
       com.usebottles.bottles
       org.freedesktop.Sdk.Extension.texlive
-      dev.zed.Zed
     )
 
     for pkg in "${flatpaks[@]}"; do
