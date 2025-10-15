@@ -57,7 +57,6 @@ install_flatpaks() {
       com.zettlr.Zettlr
       com.usebottles.bottles
       org.freedesktop.Sdk.Extension.texlive
-      dev.zed.Zed
       com.helix_editor.Helix
       org.musicbrainz.Picard
       org.gnome.EasyTAG
