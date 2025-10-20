@@ -63,6 +63,8 @@ install_flatpaks() {
       ca.littlesvr.asunder
       org.videolan.VLC
       org.remmina.Remmina
+      org.virt_manager.virt-manager
+      org.virt_manager.virt-viewer
     )
 
     for pkg in "${flatpaks[@]}"; do
