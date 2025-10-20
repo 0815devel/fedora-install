@@ -39,7 +39,7 @@ install_tainted() {
 
 install_tools() {
     echo "Installing Packages..."
-    dnf install -y htop ranger helix remmina* picard easytag asunder vlc borgbackup || true
+    dnf install -y htop ranger helix remmina* picard easytag asunder vlc borgbackup virt-viewer virt-manager || true
 }
 
 install_flatpaks() {
