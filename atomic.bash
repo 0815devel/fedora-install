@@ -45,7 +45,7 @@ setup_multimedia() {
 
 install_tools() {
     echo "Install Packagea..."
-    rpm-ostree install htop ranger borgbackup || true
+    rpm-ostree install htop ranger rclone || true
 }
 
 install_flatpaks() {
