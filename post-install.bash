@@ -39,7 +39,7 @@ install_tainted() {
 
 install_tools() {
     echo "Installing Packages..."
-    dnf install -y htop ranger helix remmina* picard easytag asunder vlc rclone virt-viewer virt-manager || true
+    dnf install -y htop ranger remmina* picard easytag asunder vlc rclone virt-viewer virt-manager || true
 }
 
 install_flatpaks() {
@@ -48,9 +48,7 @@ install_flatpaks() {
 
     flatpaks=(
       md.obsidian.Obsidian
-      com.zettlr.Zettlr
       com.usebottles.bottles
-      org.freedesktop.Sdk.Extension.texlive
     )
 
     for pkg in "${flatpaks[@]}"; do
