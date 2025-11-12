@@ -54,10 +54,7 @@ install_flatpaks() {
 
     flatpaks=(
       md.obsidian.Obsidian
-      com.zettlr.Zettlr
       com.usebottles.bottles
-      org.freedesktop.Sdk.Extension.texlive
-      com.helix_editor.Helix
       org.musicbrainz.Picard
       org.gnome.EasyTAG
       ca.littlesvr.asunder
