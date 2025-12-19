@@ -47,6 +47,7 @@ install_flatpaks() {
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
     flatpaks=(
+      dev.zed.Zed
       md.obsidian.Obsidian
       com.usebottles.bottles
     )
