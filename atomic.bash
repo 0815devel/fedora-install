@@ -45,7 +45,7 @@ setup_multimedia() {
 
 install_tools() {
     echo "Install Packagea..."
-    rpm-ostree install htop ranger rclone || true
+    rpm-ostree install htop rclone || true
 }
 
 install_flatpaks() {
@@ -82,8 +82,8 @@ system_upgrade() {
 # ------------------------
 # Main
 # ------------------------
-install_rpmfusion
-setup_multimedia
+#install_rpmfusion
+#setup_multimedia
 install_tools
 install_flatpaks
 system_upgrade
