@@ -1,4 +1,4 @@
-#/etc/systemd/system/tank.mount
+#/etc/systemd/system/var-tank.mount
 [Unit]
 Description=Mount NFS Tank
 After=network-online.target
@@ -6,7 +6,7 @@ Wants=network-online.target
 
 [Mount]
 What=host:/tank
-Where=/tank
+Where=/var/tank
 Type=nfs
 Options=_netdev,defaults,x-systemd.automount,x-systemd.idle-timeout=1min,nofail
 TimeoutSec=3
