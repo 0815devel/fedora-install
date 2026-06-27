@@ -3,5 +3,5 @@
 bash scripts after a fresh installation of Fedora to automate the initial tool installing.
 
 - `post-install.bash`: For Workstation Edition
-- `tank.mount`: Automount for NFS remote
+- `var-tank.mount`: Automount for NFS remote
 - `disable-turob-boost.service`: To disable Turbo at boot
