@@ -42,25 +42,6 @@ install_tools() {
     dnf install -y htop remmina* picard easytag asunder vlc rclone virt-viewer virt-manager || true
 }
 
-install_flatpaks() {
-    echo "Installing Flatpaks..."
-    flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
-    flatpaks=(
-      dev.zed.Zed
-      md.obsidian.Obsidian
-      com.usebottles.bottles
-    )
-
-    for pkg in "${flatpaks[@]}"; do
-        if ! flatpak list | grep -q "$pkg"; then
-            flatpak install -y --noninteractive flathub "$pkg"
-        else
-            echo "$pkg is already installed."
-        fi
-    done
-}
-
 # ------------------------
 # Main
 # ------------------------
@@ -69,6 +50,5 @@ system_update
 setup_multimedia
 install_tainted
 install_tools
-install_flatpaks
 
 echo "Workstation-Setup done!"
