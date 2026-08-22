@@ -42,6 +42,14 @@ install_tools() {
     dnf install -y htop remmina* picard easytag asunder vlc rclone virt-viewer virt-manager || true
 }
 
+install_vscode() {
+    echo "Installing VSCode..."
+    rpm --import https://packages.microsoft.com/keys/microsoft.asc
+    echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | tee /etc/yum.repos.d/vscode.repo > /dev/null
+    dnf update -y
+    dnf install -y code
+}
+
 # ------------------------
 # Main
 # ------------------------
@@ -50,5 +58,6 @@ system_update
 setup_multimedia
 install_tainted
 install_tools
+install_vscode
 
 echo "Workstation-Setup done!"
